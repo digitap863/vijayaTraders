@@ -1,0 +1,41 @@
+.section4Main{
+    margin-top: 3rem;
+}
+.section4Main h2{
+    max-width: 40rem;
+    text-align: center;
+    font-size: clamp(20px,3vw,34px);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+.section4MainContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.brandList{
+    overflow: scroll;
+    
+}
+.brandList::-webkit-scrollbar{
+    display: none;
+}
+
+.brandList ul{
+    margin-top: 4rem;
+    list-style: none;
+    display: flex;
+}
+.brandList li{
+    margin-left: 6rem;
+}
+@media (max-width:500px) {
+    .section4MainContent p{
+        font-size: 0.7rem;
+    }
+    .brandList ul{
+        margin-left: -112px;
+    }
+}

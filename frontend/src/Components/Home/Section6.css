@@ -1,0 +1,60 @@
+.section6Main{
+    margin-top: 6rem;
+    margin-left: 4rem;
+}
+.section6Main h1{
+    margin-left: 2rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    font-size: 2.3rem;
+}
+.section6MainFlex{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin-top: 4rem;
+}
+.section6MainFlex div{
+    margin-left: 2rem;
+}
+.section6MainFlex h2{
+    color: #545454;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    display: block;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.section6MainFlex p{
+    font-weight: 300;
+    color: #6A6063;
+    line-height: 1.6;
+    max-width: 22rem;
+}
+.section6MainFlex h2:hover{
+    color: #E67118;
+}
+.section6MainFlex img:hover +h2{
+    color: #E67118;
+}
+@media (max-width:1070px) {
+    .section6MainFlex{
+        grid-template-columns: auto auto;
+    }
+}
+@media (max-width:720px) {
+    .section6MainFlex{
+        grid-template-columns: auto;
+    }
+    .section6MainFlex p{
+        max-width: 90%;
+        text-align: justify;
+    }
+}
+@media (max-width:500px) {
+    .section6Main {
+        margin-left: -1rem;
+    }
+}

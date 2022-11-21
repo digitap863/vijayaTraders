@@ -1,0 +1,22 @@
+
+.row{
+    margin-right: 0px;
+    margin-left: 4%;
+}
+.contactUs{
+    text-align: start !important;
+    margin-left: 9%;
+}
+.formBtn{
+    color: black;
+    border: 1px solid black;
+    font-weight: 600;
+    background-color: transparent;
+    margin-left: 5.5%;
+}
+.formBtn:hover{
+    background-color: #1a1a1a;
+    color: white !important;
+    outline: none;
+    border: 1px solid black;
+}

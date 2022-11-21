@@ -1,0 +1,99 @@
+.section2Main{
+    margin-left: 5rem;
+    margin-top: 5rem;
+    display: flex;
+}
+.section2Main h1{
+    max-width: 30rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+.leftContents{
+    display: flex;
+}
+.featuresDisplay p{
+    max-width: 13rem;
+    color: #132E43;
+    font-size: 22px;
+    line-height: 1.4;
+}
+.featuresDisplay h1{
+    color: #E67118;
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 1;
+}
+.featuresDisplay div{
+    margin-left: 2rem;
+}
+.rightContents a{
+    font-family: "Jost",sans-serif;
+    color: #fff;
+    background: #E67118;
+    border: none;
+    padding: 16px 33px;
+    text-transform: capitalize;
+    border-radius: 0px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: inline-block;
+    border-radius: 40px;
+    border: #E67118 solid 2px;
+    transition: all 0.2s ease-in-out;
+}
+.rightContents a{
+    color: white;
+    text-decoration: none;
+}
+.rightContents p{
+    max-width: 40rem;
+    font-size: 20px;
+    color: #545454;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+.rightContents {
+    margin-top: 5%;
+}
+.rightContents a{
+    margin-top: 1rem;
+}
+.rightContents a:hover{
+    background-color: transparent;
+    color: black;
+}
+@media (max-width:980px) {
+    .section2Main{
+        flex-direction: column;
+    }
+    .section2Heading{
+        max-width: 40rem;
+    }
+    .section2Main{
+        margin-left: 2rem;
+    }
+}
+@media (max-width:600px) {
+    .section2Main{
+        margin-left: 0.7rem;
+    }
+
+    .topContents h1{
+        font-size: clamp(1.5rem,5vw,1.8rem);
+    }
+    .leftContents{
+        flex-direction: column;
+    }
+    .featuresDisplay h1{
+        font-size: 2rem;
+    }
+    .featuresDisplay p{
+        font-size: 1rem;
+    }
+}
+@media (max-width:350px) {
+    .rightContents a{
+        padding: 8px 23px;
+    }
+}

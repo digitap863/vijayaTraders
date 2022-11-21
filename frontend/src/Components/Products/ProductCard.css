@@ -1,0 +1,51 @@
+.cardMain{
+    background-image: url(https://preview.colorlib.com/theme/franclin/assets/img/gallery/gallery1.jpg.webp);
+    width: 100%;
+    height: 65vh;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+.cardLayer{
+    height: inherit;
+    width: inherit;
+    transition: all 0.3s ease-in-out;
+}
+.cardContent{
+    color: white;
+    position: relative;
+    top: 45%;
+    transform: translateX(-200px);
+    transition: all 0.2s ease-in-out;
+}
+.cardContent h1{
+    margin-bottom: 0;
+    font-size: 3rem;
+    font-weight: 600;
+}
+.cardContent p{
+    margin-bottom: 0;
+    font-size: 1.5rem;
+    font-size: 500;
+}
+.cardLayer:hover{
+    background-color: rgba(67, 67, 67, 0.5);
+}
+.cardLayer:hover .cardContent{
+     transform: translateX(100px);
+}
+@media (max-width:460px) {
+    .cardMain{
+        height: 40vh;
+    }
+    .cardContent h1{
+        font-size: 2.5rem;
+    }
+    .cardContent p{
+        font-size: 1.3rem;
+    }
+}
+@media (max-width:320px) {
+    .cardMain{
+        height: 35vh;
+    }
+}

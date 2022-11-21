@@ -1,0 +1,17 @@
+.galleryDisplay{
+    padding: 5% 6%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 2rem;
+    row-gap: 2rem;
+}
+@media (max-width:1010px) {
+    .galleryDisplay{
+        grid-template-columns: auto auto;
+    }
+}
+@media (max-width:640px) {
+    .galleryDisplay{
+        grid-template-columns: auto;
+    }
+}

@@ -1,0 +1,114 @@
+
+.section5Main{
+    margin-top: 4rem;
+    display: flex;
+    width: 100%;
+    background-color:#f2f4f8;  
+}
+.section5Img{
+    width:75%;
+}
+.section5Img img{
+    width: inherit;
+    height: 115vh;
+}
+.section5Content {
+    margin-left: -16%;
+    margin-top: 2%;
+}
+.section5Content h1{
+    color: black;
+    max-width: 20rem;
+    font-size: 44px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+.section5Content p{
+    color: black;
+}
+.section5Content ul{
+    list-style: none;
+    display: flex;
+    color: black;
+    margin-left: -2.5rem;
+    margin-top: 2rem;
+}
+.section5Contentexp{
+    max-width: 30rem;
+    color: #545454;
+    line-height: 1.7;
+    font-size: 20px;
+    font-weight: 400;
+}
+.section5ContentFlex{
+    color: black;
+    display: flex;
+}
+.section5ContentFlex div{
+    margin-right: 2rem;
+}
+.section5Content span{
+    color: #E67118;
+    font-size: 20px;
+    font-weight: 500;
+}
+.section5Content button{
+    margin-top: 4rem;
+    color: white;
+    background-color: #2A2A2A;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 1rem 3rem;
+    border-radius: 2rem;
+    transition: all 0.2s ease-in-out;
+    outline: none;
+}
+.section5Content button:hover{
+    background-color: transparent;
+    color: #2A2A2A;
+}
+@media (max-width:1000px) {
+    .section5Main{
+        flex-direction: column;
+    }
+    .section5Img{
+        width: 100%;
+    }
+    .section5Img img{
+        height: 80vh;
+    }
+    .section5Content{
+        margin-left: 4rem;
+    }
+}
+@media (max-width:570px) {
+    .section5Content{
+        margin-left: 1rem;
+        padding: 1rem 0;
+    }
+    .section5Img img{
+        height: 50vh;
+    }
+    .section5Content h1{
+        font-size: clamp(30px,4vw,23px);
+        max-width:90%;
+    }
+    .section5Content p {
+        font-size: 1rem;
+        padding-right: 1rem;
+    }
+    .section5Content button{
+        margin-top: 1rem;
+        padding: 0.6rem 1.5rem;
+    }
+    .heading{
+        font-size: 1.3rem;
+    }
+    .section5Contentexp{
+        text-align: justify;
+    }
+    .section5ContentFlex{
+        padding: 1rem;
+    }
+}

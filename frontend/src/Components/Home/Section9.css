@@ -1,0 +1,56 @@
+.section9Main{
+    display: flex;
+    align-items: center;
+    background-color: #1A1A1A;
+    width: 100%;
+    height: 40vh;
+    color: white;
+}
+.section9Main div{
+    margin-right: auto;
+    margin-left: 5%;
+}
+.section9Main p{
+    max-width: 20rem;
+}
+.section9Main button{
+    margin-right: 20%;
+    padding: 1.2rem 2.4rem;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: #E67118;
+    border: #E67118 2px solid;
+    color: white;
+    border-radius: 2rem;
+    transition: all 0.2s ease-in-out;
+}
+.section9Main button:hover{
+    background-color: #1A1A1A;
+}
+@media (max-width:740px) {
+    .section9Main{
+        flex-direction: column;
+        padding: 2rem 0;
+    }
+    .section9Main div{
+        margin-left: 10%;
+    }
+    .section9Main p{
+        max-width: 40rem;
+        text-align: justify;
+        padding-right: 2rem;
+    }
+    .section9Main button{
+        padding: 1rem 2rem;
+        margin-right: 47%;
+    }
+    .section9Main h1{
+        font-size: 1.5rem;
+    }
+}
+@media (max-width:450px) {
+    .section9Main button{
+        padding: 0.7rem 1.4rem;
+        margin-right: 50%;
+    }
+}

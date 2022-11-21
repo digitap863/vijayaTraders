@@ -1,0 +1,22 @@
+.GallerycardMain{
+    width: 100%;
+    height: 65vh;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover
+}
+.GallerycardLayer{
+    height: inherit;
+    width: inherit;
+    transition: all 0.3s ease-in-out;
+}
+@media (max-width:460px) {
+    .GallerycardMain{
+        height: 40vh;
+    }
+}
+@media (max-width:320px) {
+    .GallerycardMain{
+        height: 35vh;
+    }
+}

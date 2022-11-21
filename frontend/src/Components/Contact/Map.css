@@ -1,0 +1,24 @@
+.map {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    text-align: center;
+  }
+  iframe {
+    margin: 5% 10%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 80%;
+    height: 80%;
+  }
+  @media (max-width:730px) {
+    iframe{
+        margin: 1% 2%;
+        width: 96%;
+        height: 97%;
+    }
+  }
