@@ -1,11 +1,18 @@
 .cardMain{
-    background-image: url(https://preview.colorlib.com/theme/franclin/assets/img/gallery/gallery1.jpg.webp);
     width: 100%;
     height: 65vh;
     overflow: hidden;
     background-repeat: no-repeat;
+    position: relative;
+}
+.cardMain img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
 }
 .cardLayer{
+    z-index: 10;
     height: inherit;
     width: inherit;
     transition: all 0.3s ease-in-out;
@@ -13,35 +20,43 @@
 .cardContent{
     color: white;
     position: relative;
-    top: 45%;
-    transform: translateX(-200px);
+    top: 10%;
+    transform: translateX(-1000px);
     transition: all 0.2s ease-in-out;
 }
 .cardContent h1{
     margin-bottom: 0;
     font-size: 3rem;
     font-weight: 600;
+    max-width:90%;
+    
 }
 .cardContent p{
     margin-bottom: 0;
+    margin-top: 1rem;
     font-size: 1.5rem;
     font-size: 500;
+    max-width: 90%;
 }
 .cardLayer:hover{
     background-color: rgba(67, 67, 67, 0.5);
 }
 .cardLayer:hover .cardContent{
-     transform: translateX(100px);
+     transform: translateX(7%);
 }
 @media (max-width:460px) {
     .cardMain{
         height: 40vh;
     }
     .cardContent h1{
-        font-size: 2.5rem;
+        font-size: 1.5rem;
+        line-height: 1.3rem;
+        
     }
     .cardContent p{
-        font-size: 1.3rem;
+        font-size: 1rem;
+        line-height: 1.2rem;
+
     }
 }
 @media (max-width:320px) {

@@ -17,7 +17,8 @@
 }
 .brandList{
     overflow: scroll;
-    
+    padding: 0 5rem;
+    margin: -2rem 0;
 }
 .brandList::-webkit-scrollbar{
     display: none;
@@ -28,8 +29,8 @@
     list-style: none;
     display: flex;
 }
-.brandList li{
-    margin-left: 6rem;
+.brandList li div{
+    margin-right: 4rem;
 }
 @media (max-width:500px) {
     .section4MainContent p{
@@ -38,4 +39,11 @@
     .brandList ul{
         margin-left: -112px;
     }
+}
+.brandList ul li div{
+    width: 10rem;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content:center ;
 }

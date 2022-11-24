@@ -50,7 +50,7 @@ const ViewAllProducts = asyncHandler(async (req, res) => {
     .toArray();
   console.log(ViewAllProducts, "fmdfkdskfsk");
   if (ViewAllProducts) {
-    res.status(200).json(ViewAllProducts);
+    res.status(200).send(ViewAllProducts);
   } else {
     res.status(500).json("Somthing Went wrong");
   }

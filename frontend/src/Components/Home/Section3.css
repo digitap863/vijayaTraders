@@ -70,6 +70,9 @@
     }
 }
 @media (max-width:480px) {
+    .section3Main{
+       margin-top: 3rem;
+    }
     .section3Main img{
         width:100%;
         min-width:12rem;

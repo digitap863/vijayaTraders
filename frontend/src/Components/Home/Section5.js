@@ -1,11 +1,12 @@
 import React from 'react'
 import StarIcon from '@mui/icons-material/Star';
+import image from '../../imges/img114.jpg'
 import './Section5.css'
 function Section5() {
   return (
     <div className='section5Main'>
         <div className='section5Img' >
-            <img src="https://preview.colorlib.com/theme/franclin/assets/img/gallery/visit_bg.jpg.webp" alt="" />
+            <img src={image} alt="" />
         </div>
         <div className='section5Content' >
 

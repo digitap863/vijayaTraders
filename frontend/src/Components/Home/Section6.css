@@ -47,6 +47,7 @@
 @media (max-width:720px) {
     .section6MainFlex{
         grid-template-columns: auto;
+        margin-top: 1.5rem;
     }
     .section6MainFlex p{
         max-width: 90%;
@@ -56,5 +57,6 @@
 @media (max-width:500px) {
     .section6Main {
         margin-left: -1rem;
+        margin-top: 2rem;
     }
 }

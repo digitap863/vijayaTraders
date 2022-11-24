@@ -54,3 +54,8 @@
         margin-right: 50%;
     }
 }
+@media (max-width:350px) {
+    .section9Main button{
+        margin-right: 40%;
+    }
+}

@@ -37,6 +37,7 @@ function Sidebar() {
   const [open, setOpen] = React.useState(false);
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [widgetLoading, setWidgetLoading] = useState(false)
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -47,6 +48,7 @@ function Sidebar() {
     }
   }, []);
   const Imageupload = () => {
+    setWidgetLoading(true);
     var myWidget = window.cloudinary.openUploadWidget(
       {
         cloudName: "dbpxhm5vt",
@@ -65,13 +67,13 @@ function Sidebar() {
     );
 
     myWidget.open();
+
   };
 
   useEffect(() => {
     (async function () {
       try {
         const { data } = await axios.get("/api/admin/viewAllProduct");
-
         setProduct(data);
       } catch (error) {
         console.log(error);
@@ -88,6 +90,7 @@ function Sidebar() {
     }).then(async (willDelete) => {
       if (willDelete) {
         try {
+
           const config = {
             headers: {
               "auth-token": adminToken,
@@ -98,19 +101,25 @@ function Sidebar() {
             `/api/admin/deleteProduct/${id}`,
             config
           );
+
+
           setLoading(true);
-          setLoading(false);
+          if (loading) {
+            setLoading(false)
+          }
+
         } catch (error) {
           console.log(error);
         }
       } else {
         swal("Your Data Is Safe");
       }
+
     });
   };
-
   const onSubmit = async (item) => {
-    console.log(item, image);
+
+    // console.log(item, image);
     const { Name, Price, Description } = item;
 
     if (image) {
@@ -125,6 +134,11 @@ function Sidebar() {
           { Name, Price, Description, image },
           config
         );
+        reset()
+        setImage("")
+        setOpen(false)
+        setLoading(!loading);
+
         console.log(data);
       } catch (error) {
         swal("OOPS!", "Somthing Wernt Wrong!", "error");
@@ -241,7 +255,7 @@ function Sidebar() {
             timeout: 500,
           }}
         >
-          <Fade in={open}>
+          <Fade in={open} >
             <Box sx={style}>
               <div>
                 <h4 style={{ textAlign: "center" }}>ADD PRODUCTS</h4>
@@ -255,10 +269,6 @@ function Sidebar() {
                     className="form-control mt-3"
                     {...register("Name", {
                       required: "Name is Required",
-                      pattern: {
-                        value: /^[A-Za-z\s]*$/,
-                        message: "Invalid Name",
-                      },
                     })}
                     onKeyUp={() => {
                       trigger("Name");
@@ -277,10 +287,6 @@ function Sidebar() {
                     className="form-control  mt-3"
                     {...register("Description", {
                       required: "Description is Required",
-                      pattern: {
-                        value: /^[A-Za-z\s]*$/,
-                        message: "Invalid Description",
-                      },
                     })}
                     onKeyUp={() => {
                       trigger("Description");
@@ -298,7 +304,7 @@ function Sidebar() {
                     placeholder="Enter Product Price"
                     className="form-control  mt-3"
                     {...register("Price", {
-                      required: "Price is Required",
+
                     })}
                     onKeyUp={() => {
                       trigger("Price");
@@ -314,13 +320,16 @@ function Sidebar() {
                   <a
                     className="form-control btn btn-warning mt-3"
                     onClick={Imageupload}
+                    style={{cursor:widgetLoading?'disabled':'pointer'}}
                   >
                     UPLOAD IMAGE
                   </a>
-
-                  <button type="submit" className="btn btn-success mt-3">
+                  {<div style={{ width: '7rem', height: '3rem',display:'inline' }}><img src={!image?'https://imgv3.fotor.com/images/homepage-feature-card/Upload-an-image.jpg':image} alt="" style={{ width: 'inherit', height: 'inherit',marginTop: '1rem' }} /></div>}
+                  <span style={{marginLeft:'4%'}}>(255 x 255)</span>
+                  <button type="submit" className="btn btn-success mt-3" style={{display:'block'}}>
                     SUBMIT
                   </button>
+                  
                 </form>
               </div>
             </Box>

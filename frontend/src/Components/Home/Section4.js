@@ -1,5 +1,10 @@
 import React from 'react'
 import './Section4.css'
+import fevicol from '../../imges/fevicol.png'
+import haefele from '../../imges/haefele_logo.png'
+import pidilite from '../../imges/pidilite.png'
+import jowat from '../../imges/jowat-logo_corporate.png'
+import rehau from '../../imges/rehau-logo.svg-data.png'
 function Section4() {
   return (
     <div className='section4Main'>
@@ -13,19 +18,20 @@ function Section4() {
 
             <ul>
                 <li>
-                    <img src="https://preview.colorlib.com/theme/franclin/assets/img/gallery/brand1.png.webp" alt="" />
+                    <div><img src={fevicol} alt=""style={{marginLeft:'5rem'}} /></div>
                 </li>
                 <li>
-                    <img src="https://preview.colorlib.com/theme/franclin/assets/img/gallery/brand2.png.webp" alt="" />
+                    <div><img src={pidilite} alt="" /></div>
                 </li>
                 <li>
-                    <img src="https://preview.colorlib.com/theme/franclin/assets/img/gallery/brand1.png.webp" alt="" />
+                   <div> <img src={haefele} alt="" /></div>
                 </li>
                 <li>
-                    <img src="https://preview.colorlib.com/theme/franclin/assets/img/gallery/brand2.png.webp" alt="" />
+                   <div><img src={jowat} alt="" /></div>
+                
                 </li>
                 <li>
-                    <img src="https://preview.colorlib.com/theme/franclin/assets/img/gallery/brand1.png.webp" alt="" />
+                   <div><img src={rehau} alt="" style={{width:'12rem'}} /></div>
                 </li>
             </ul>
         </div>

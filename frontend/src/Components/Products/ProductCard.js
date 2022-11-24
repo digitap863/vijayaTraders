@@ -1,12 +1,14 @@
 import React from 'react'
 import './ProductCard.css'
-function ProductCard() {
+function ProductCard(props) {
+
   return (
     <div className='cardMain'>
+      <img src={props.image} alt="" />
       <div className='cardLayer'>
       <div className='cardContent'>
-        <h1>Title</h1>
-        <p>Description</p>
+        <h1>{props.name}</h1>
+        <p>{props.description}</p>
         <p>Price</p>
       </div>
       </div>

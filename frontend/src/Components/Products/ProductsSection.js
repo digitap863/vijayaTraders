@@ -1,6 +1,7 @@
 import React from 'react'
 import './ProductsSection.css'
 function ProductsSection() {
+  
   return (
     <div className='ProductsSectionMain'>
         <div className='layer'>
