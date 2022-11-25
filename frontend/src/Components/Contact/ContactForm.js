@@ -1,9 +1,29 @@
 import React from 'react'
+import {useForm} from 'react-hook-form'
+import axios from 'axios'
 import './ContactForm.css'
 import HomeIcon from '@mui/icons-material/Home';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import EmailIcon from '@mui/icons-material/Email';
 function ContactForm() {
+
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+      } = useForm();
+
+      const onSubmit=async ({name,email,subject,message})=>{
+        try {
+            const submit= await axios.post(
+                "/api/admin/send-email",
+                {name,email,subject,message}
+              );
+        } catch (error) {
+            console.log(error);
+        }
+        
+      }
   return (
     <div className='contactForm'>
         <section class="mb-4">
@@ -13,21 +33,29 @@ function ContactForm() {
 <div class="row">
 
     <div class="col-md-9 mb-md-0 mb-5">
-        <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+        <form id="contact-form" name="contact-form" action="mail.php" method="POST" onSubmit={handleSubmit(onSubmit)}>
 
             <div class="row">
 
                 <div class="col-md-6">
                     <div class="md-form mb-0">
-                        <input type="text" id="name" name="name" class="form-control"/>
+                        <input type="text" id="name" name="name" class="form-control" {...register('name', { required: true })} />
                         <label for="name" class="">Your name</label>
+                       <small className="text-danger">{errors.name?.type === "required" && "Name is required"}</small>
                     </div>
                 </div>
                
                 <div class="col-md-6">
                     <div class="md-form mb-0">
-                        <input type="text" id="email" name="email" class="form-control"/>
+                        <input type="text" id="email" name="email" class="form-control" {...register("email", {
+              required: true,
+              pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
+            })}/>
                         <label for="email" class="">Your email</label>
+                        <small className="text-danger">
+                            {errors.email?.type === "required" && "Email is required"}
+                          {errors.email?.type === "pattern" &&
+                        "Entered email is in wrong format"}</small>
                     </div>
                 </div>
 
@@ -36,8 +64,9 @@ function ContactForm() {
             <div class="row">
                 <div class="col-md-12">
                     <div class="md-form mb-0">
-                        <input type="text" id="subject" name="subject" class="form-control"/>
+                        <input type="text" id="subject" name="subject" class="form-control" {...register('subject', { required: true },{message:'This field is required'})}/>
                         <label for="subject" class="">Subject</label>
+                         <small className="text-danger">{errors.subject?.type === "required" && "Subject is required"}</small>
                     </div>
                 </div>
             </div>
@@ -47,18 +76,20 @@ function ContactForm() {
                 <div class="col-md-12">
 
                     <div class="md-form">
-                        <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+                        <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea" {...register('message', { required: true },{message:'This field is required'})}></textarea>
                         <label for="message">Your message</label>
+                        <small className="text-danger">{errors.message?.type === "required" && "Message is required"}</small>
                     </div>
 
                 </div>
             </div>
+            <div class="text-center text-md-left">
+            <input type="submit"  className="btn btn-primary formBtn"/>
+        </div>
 
         </form>
 
-        <div class="text-center text-md-left">
-            <a class="btn btn-primary formBtn">Send</a>
-        </div>
+        
         <div class="status"></div>
     </div>
     <div class="col-md-3 text-center formData" >

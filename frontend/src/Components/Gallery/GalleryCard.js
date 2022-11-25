@@ -1,12 +1,12 @@
 import React from "react";
 import "./GalleryCard.css";
-function GalleryCard() {
+function GalleryCard(props) {
   return (
     <div
       className="GallerycardMain"
       style={{
         backgroundImage:
-          "url(https://preview.colorlib.com/theme/franclin/assets/img/gallery/gallery1.jpg.webp)",
+          `url(${props.image})`,
       }}
     >
       <div className="GallercardLayer"></div>

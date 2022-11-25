@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import "./Sidebar.css";
+import {React,useEffect, useState} from 'react'
+import { useNavigate } from "react-router-dom";
+import DeleteIcon from "@mui/icons-material/Delete";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -7,22 +8,9 @@ import Fade from "@mui/material/Fade";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import swal from "sweetalert";
-import DeleteIcon from "@mui/icons-material/Delete";
 import Typography from "@mui/material/Typography";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-
-function Sidebar() {
-  const {
-    register,
-    handleSubmit,
-    trigger,
-    reset,
-    formState: { errors },
-  } = useForm();
-  const navigate = useNavigate();
-
-  const style = {
+const style = {
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -33,20 +21,45 @@ function Sidebar() {
     boxShadow: 24,
     p: 4,
   };
-  const [image, setImage] = useState();
-  const [open, setOpen] = React.useState(false);
-  const [product, setProduct] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [widgetLoading, setWidgetLoading] = useState(false)
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
+function AdminGallery() {
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const [image,setImage]=useState()
+    const [open, setOpen] =useState(false);
+    const [widgetLoading, setWidgetLoading] = useState(false)
+    const [gallery,setGallery]=useState([])
+    const [loading,setLoading]=useState(false)
   const adminToken = localStorage.getItem("adminToken");
+  const navigate =useNavigate()
+
+  useEffect(() => {
+    (async function () {
+      try {
+        const { data } = await axios.get("/api/admin/viewAllGallery");
+        setGallery(data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [loading]);
+
   useEffect(() => {
     if (!adminToken) {
       navigate("/admin");
     }
   }, []);
+  const logout = () => {
+    const adminToken = localStorage.removeItem("adminToken");
+    navigate("/admin");
+  };
+  const {
+    register,
+    handleSubmit,
+    trigger,
+    reset,
+    formState: { errors },
+  } = useForm()
+  
   const Imageupload = () => {
     setWidgetLoading(true);
     var myWidget = window.cloudinary.openUploadWidget(
@@ -69,18 +82,41 @@ function Sidebar() {
     myWidget.open();
 
   };
+  const onSubmit = async (item) => {
 
-  useEffect(() => {
-    (async function () {
+    // console.log(item, image);
+    console.log(adminToken,"token");
+    const { Name} = item;
+    console.log(Name,"sdfksjfk");
+
+    if (image) {
       try {
-        const { data } = await axios.get("/api/admin/viewAllProduct");
-        setProduct(data);
+        const config = {
+          headers: {
+            "auth-token": adminToken,
+          },
+        };
+        const { data } = await axios.post(
+          "/api/admin/addGallery",
+          { Name,image },
+          config
+        );
+        reset()
+        setImage("")
+        setOpen(false)
+        setLoading(!loading);
+        console.log(data);
       } catch (error) {
         console.log(error);
+        swal("OOPS!", "Somthing Wernt Wrong!", "error");
       }
-    })();
-  }, [loading]);
+    } else {
+      swal("OOPS!", "Please Upload Image!", "error");
+    }
+  };
+  
   const DeleteProduct = async (id) => {
+
     swal({
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this data file!",
@@ -98,10 +134,9 @@ function Sidebar() {
           };
 
           const { data } = await axios.delete(
-            `/api/admin/deleteProduct/${id}`,
+            `/api/admin/deleteGallery/${id}`,
             config
           );
-
 
           setLoading(true);
           if (loading) {
@@ -117,45 +152,10 @@ function Sidebar() {
 
     });
   };
-  const onSubmit = async (item) => {
-
-    // console.log(item, image);
-    const { Name, Price, Description } = item;
-
-    if (image) {
-      try {
-        const config = {
-          headers: {
-            "auth-token": adminToken,
-          },
-        };
-        const { data } = await axios.post(
-          "/api/admin/addProducts",
-          { Name, Price, Description, image },
-          config
-        );
-        reset()
-        setImage("")
-        setOpen(false)
-        setLoading(!loading);
-
-        console.log(data);
-      } catch (error) {
-        swal("OOPS!", "Somthing Wernt Wrong!", "error");
-      }
-    } else {
-      swal("OOPS!", "Please Upload Image!", "error");
-    }
-  };
-  
-  const logout = () => {
-    const adminToken = localStorage.removeItem("adminToken");
-    navigate("/admin");
-  };
 
   return (
     <div class="s-layout">
-      <div class="s-layout__sidebar">
+       <div class="s-layout__sidebar">
         <a class="s-sidebar__trigger" href="#0">
           <i class="fa fa-bars"></i>
         </a>
@@ -185,7 +185,7 @@ function Sidebar() {
             </div>
             <div>
               <li>
-                <a class="s-sidebar__nav-link" onClick={logout}>
+                <a class="s-sidebar__nav-link"  onClick={logout}>
                   <i class="fa fa-user"></i>
                   <em>Logout</em>
                 </a>
@@ -195,8 +195,9 @@ function Sidebar() {
         </nav>
       </div>
 
+      
       <main className="s-layout__content">
-        <div class="wrapper">
+      <div class="wrapper">
           <a
             onClick={handleOpen}
             class="btn btn-1 btn-success ms-3 mt-5 mb-3"
@@ -205,47 +206,43 @@ function Sidebar() {
             ADD IMAGE
           </a>
         </div>
-        <div className="table-wrapper">
+      <div className="table-wrapper">
           <table>
             <thead>
               <tr>
                 <th scope="col">IMAGE</th>
-                <th scope="col">PRODUCT NAME</th>
-                <th scope="col">DESCRIPTION</th>
+                <th scope="col">NAME</th>
                 <th scope="col">ACTION</th>
               </tr>
             </thead>
             <tbody>
-              {product.map((items) => {
-                return (
-                  <tr>
+              {gallery.map((item)=>{
+
+                return(<tr>
                     <td data-label="Account">
                       <img
-                        src={items.image}
+                        src={item.image}
                         style={{ width: "100px", height: "150px" }}
                         alt=""
                       />
                     </td>
-                    <td data-6label="name">{items.Name}</td>
-                    <td data-label="category">{items.Description}</td>
+                    <td data-6label="name">{item.Name}</td>
 
                     <td>
                       <a
                         onClick={(e) => {
-                          DeleteProduct(items._id);
+                          DeleteProduct(item._id);
                         }}
                       >
                         {" "}
                         <DeleteIcon style={{ cursor: "pointer" }} />
                       </a>
                     </td>
-                  </tr>
-                );
+                  </tr>)
               })}
             </tbody>
           </table>
-        </div>
-        <Modal
+          <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
           open={open}
@@ -259,14 +256,14 @@ function Sidebar() {
           <Fade in={open} >
             <Box sx={style}>
               <div>
-                <h4 style={{ textAlign: "center" }}>ADD PRODUCTS</h4>
+                <h4 style={{ textAlign: "center" }}>ADD IMAGES</h4>
                 <form
                   className="tm-edit-product-form"
                   onSubmit={handleSubmit(onSubmit)}
                 >
                   <input
                     type="text"
-                    placeholder="Enter Product Name"
+                    placeholder="Enter Image Name"
                     className="form-control mt-3"
                     {...register("Name", {
                       required: "Name is Required",
@@ -282,7 +279,7 @@ function Sidebar() {
                       </small>
                     </div>
                   )}
-                  <textarea
+                  {/* <textarea
                     rows="5"
                     placeholder="Enter Product Description"
                     className="form-control  mt-3"
@@ -299,8 +296,8 @@ function Sidebar() {
                         {errors.Description.message}
                       </small>
                     </div>
-                  )}
-                  <input
+                  )} */}
+                  {/* <input
                     type="text"
                     placeholder="Enter Product Price"
                     className="form-control  mt-3"
@@ -317,7 +314,7 @@ function Sidebar() {
                         {errors.Price.message}
                       </small>
                     </div>
-                  )}
+                  )} */}
                   <a
                     className="form-control btn btn-warning mt-3"
                     onClick={Imageupload}
@@ -336,9 +333,10 @@ function Sidebar() {
             </Box>
           </Fade>
         </Modal>
-      </main>
+        </div>
+        </main>
     </div>
-  );
+  )
 }
 
-export default Sidebar;
+export default AdminGallery

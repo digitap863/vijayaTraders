@@ -17,8 +17,8 @@ function Section4() {
         <div className='brandList'>
 
             <ul>
-                <li>
-                    <div><img src={fevicol} alt=""style={{marginLeft:'5rem'}} /></div>
+            <li>
+                   <div><img src={rehau} alt="" style={{width:'12rem'}} /></div>
                 </li>
                 <li>
                     <div><img src={pidilite} alt="" /></div>
@@ -31,8 +31,9 @@ function Section4() {
                 
                 </li>
                 <li>
-                   <div><img src={rehau} alt="" style={{width:'12rem'}} /></div>
+                    <div><img src={fevicol} alt=""style={{marginLeft:'5rem'}} /></div>
                 </li>
+                
             </ul>
         </div>
     </div>

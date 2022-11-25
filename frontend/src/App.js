@@ -1,6 +1,7 @@
 import { React } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import AdminGallery from "./Components/AdminSideBar/AdminGallery";
 import About from "./Pages/About";
 import AdminHome from "./Pages/AdminHome";
 import Contact from "./Pages/Contact";
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/about" element={<About />}></Route>
           <Route exact path="/admin" element={<Login />}></Route>
           <Route exact path="/adminHome" element={<AdminHome />}></Route>
+          <Route exact path="/adminGallery" element={<AdminGallery />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

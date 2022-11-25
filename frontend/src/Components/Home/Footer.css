@@ -47,3 +47,6 @@
         margin-top:2rem ;
     }
 }
+.navs p:hover{
+    text-decoration: underline;
+}
